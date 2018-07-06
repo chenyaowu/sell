@@ -10,8 +10,8 @@
     <appender name = "fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
-            <onMatch>DENY</onMatch>
-            <onMismatch>ACCEPT</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
         </filter>
         <encoder>
             <pattern>
@@ -28,8 +28,8 @@
     <appender name = "fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
-            <onMatch>DENY</onMatch>
-            <onMismatch>ACCEPT</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
         </filter>
         <encoder>
             <pattern>
