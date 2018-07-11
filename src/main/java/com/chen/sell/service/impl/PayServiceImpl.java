@@ -5,7 +5,7 @@ import com.chen.sell.enums.ResultEnum;
 import com.chen.sell.exception.SellException;
 import com.chen.sell.service.OrderService;
 import com.chen.sell.service.PayService;
-import com.chen.sell.utils.JsonUtils;
+import com.chen.sell.utils.JsonUtil;
 import com.chen.sell.utils.MathUtil;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
@@ -37,9 +37,9 @@ public class PayServiceImpl implements PayService {
         payRequest.setOrderId(orderDTO.getOrderId());
         payRequest.setOrderName(ORDER_NAME);
         payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_H5);
-        log.info("[微信支付]发起支付，request={}", JsonUtils.toJson(payRequest));
+        log.info("[微信支付]发起支付，request={}", JsonUtil.toJson(payRequest));
         PayResponse payResponse =  bestPayService.pay(payRequest);
-        log.info("[微信支付]发起支付，response={}",JsonUtils.toJson(payResponse));
+        log.info("[微信支付]发起支付，response={}", JsonUtil.toJson(payResponse));
         return payResponse;
     }
 
@@ -54,7 +54,7 @@ public class PayServiceImpl implements PayService {
         //4.支付人（下单人=支付人）
 
         PayResponse payResponse = bestPayService.asyncNotify(notifyDate);
-        log.info("[微信支付]异步通知：payResponse={}",JsonUtils.toJson(payResponse));
+        log.info("[微信支付]异步通知：payResponse={}", JsonUtil.toJson(payResponse));
 
        //查询订单
         OrderDTO orderDTO = orderService.findOne(payResponse.getOrderId());
@@ -88,9 +88,9 @@ public class PayServiceImpl implements PayService {
         refundRequest.setOrderId(orderDTO.getOrderId());
         refundRequest.setOrderAmount(orderDTO.getOrderAmount().doubleValue());
         refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_H5);
-        log.info("[微信退款] request={}",JsonUtils.toJson(refundRequest));
+        log.info("[微信退款] request={}", JsonUtil.toJson(refundRequest));
         RefundResponse refundResponse= bestPayService.refund(refundRequest);
-        log.info("[微信退款] response={}",JsonUtils.toJson(refundResponse));
+        log.info("[微信退款] response={}", JsonUtil.toJson(refundResponse));
         return refundResponse;
 
     }

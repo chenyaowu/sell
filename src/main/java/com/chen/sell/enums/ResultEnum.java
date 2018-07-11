@@ -2,6 +2,7 @@ package com.chen.sell.enums;
 
 
 public enum ResultEnum {
+    SUCCESS(0,"成功"),
 
     PARAM_ERROR(1,"参数不正确"),
 
@@ -17,6 +18,8 @@ public enum ResultEnum {
     ORDER_OWNER_ERROR(19,"该订单不属于当前用户"),
     WECHAT_MP_ERROR(20,"微信错误"),
     WXPAY_NOTIFY_MONEY_NERIFY_ERROR(21,"微信异步通知金额校验不通过"),
+    ORDER_CANCEL_SUCCESS(22,"订单取消成功"),
+    ORDER_FINISJ_SUCCESS(23,"卖家完结订单成功"),
 
     ;
 
