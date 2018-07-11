@@ -12,5 +12,11 @@ server:
   servlet:
     context-path: /sell
 
+wechat:
+  mpAppId:
+  mpAppSecret:
+  mchKey:
+  keyPath:
+  notifyUrl:
 
 

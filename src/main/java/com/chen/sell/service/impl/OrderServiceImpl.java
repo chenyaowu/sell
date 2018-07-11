@@ -12,6 +12,7 @@ import com.chen.sell.exception.SellException;
 import com.chen.sell.repository.OrderDetailRepository;
 import com.chen.sell.repository.OrderMasterRepository;
 import com.chen.sell.service.OrderService;
+import com.chen.sell.service.PayService;
 import com.chen.sell.service.ProductService;
 import com.chen.sell.utils.KeyUtil;
 import com.chen.sell.converter.OrderMaster2OrderDTOConverter;
@@ -40,6 +41,8 @@ public class OrderServiceImpl implements OrderService{
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private PayService payService;
 
 
     @Override
@@ -148,7 +151,7 @@ public class OrderServiceImpl implements OrderService{
 
         //如果已支付，需要退款
         if(orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
-            //TODO
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
