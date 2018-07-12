@@ -12,32 +12,36 @@
                     <table class="table table-striped table-condensed">
                         <thead>
                         <tr>
-                            <th>订单id</th>
-                            <th>姓名</th>
-                            <th>手机号</th>
-                            <th>地址</th>
-                            <th>金额</th>
-                            <th>订单状态</th>
-                            <th>支付状态</th>
+                            <th>商品id</th>
+                            <th>名称</th>
+                            <th>图片</th>
+                            <th>单价</th>
+                            <th>库存</th>
+                            <th>描述</th>
+                            <th>类目</th>
                             <th>创建时间</th>
+                            <th>修改时间</th>
                             <th colspan="2">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <#list orderDTOPage.content as orderDTO>
+                        <#list productInfoPage.content as productInfo>
                         <tr>
-                            <td>${orderDTO.orderId}</td>
-                            <td>${orderDTO.buyerName}</td>
-                            <td>${orderDTO.buyerPhone}</td>
-                            <td>${orderDTO.buyerAddress}</td>
-                            <td>${orderDTO.orderAmount}</td>
-                            <td>${orderDTO.getOrderStatusEnum().message}</td>
-                            <td>${orderDTO.getPayStatusEnum().message}</td>
-                            <td>${orderDTO.createTime}</td>
-                            <td><a href="/sell/seller/order/detail?orderId=${orderDTO.orderId}">详情</a> </td>
+                            <td>${productInfo.productId}</td>
+                            <td>${ProductInfo.productName}</td>
+                            <td><img height="100" width="100" src="${ProductInfo.productIcon}"></td>
+                            <td>${ProductInfo.productPrice}</td>
+                            <td>${ProductInfo.productStock}</td>
+                            <td>${ProductInfo.productDescription}</td>
+                            <td>${ProductInfo.categoryType}</td>
+                            <td>${ProductInfo.createTime}</td>
+                            <td>${ProductInfo.updateTime}</td>
+                            <td><a href="/sell/seller/product/index?productId=${ProductInfo.productId}">修改</a> </td>
                             <td>
-                                <#if orderDTO.orderStatus == 0>
-                                    <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}">取消</a>
+                                <#if ProductInfo.productStatus == 0>
+                                    <a href="/sell/seller/product/off_sale?productId=${ProductInfo.productId}">下架</a>
+                                <#else >
+                                    <a href="/sell/seller/product/on_sale?productId=${ProductInfo.productId}">在架</a>
                                 </#if>
                             </td>
                         </tr>
@@ -52,7 +56,7 @@
                     <#else >
                         <li><a href="/sell/seller/order/list?page=${currentPage-1}&size=${size}">上一页</a></li>
                     </#if>
-                    <#list 1..orderDTOPage.getTotalPages() as index>
+                    <#list 1..productInfoPage.getTotalPages() as index>
                         <#if currentPage == index>
                             <li class="disabled"><a href="#">${index}</a> </li>
                         <#else>
@@ -61,7 +65,7 @@
                             </li>
                         </#if>
                     </#list>
-                    <#if currentPage gte orderDTOPage.getTotalPages()>
+                    <#if currentPage gte productInfoPage.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else >
                         <li><a href="/sell/seller/order/list?page=${currentPage+1}&size=${size}">下一页</a></li>

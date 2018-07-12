@@ -55,4 +55,18 @@ public class ProductServiceImplTest {
         Assert.assertNotNull(productInfo1);
     }
 
+    @Test
+    public void onSaleTest(){
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void offSaleTest(){
+        ProductInfo result = productService.offSale("123456");
+        Assert.assertNotNull(result);
+    }
+
+
+
 }
