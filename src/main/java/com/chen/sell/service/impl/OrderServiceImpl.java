@@ -11,9 +11,7 @@ import com.chen.sell.enums.ResultEnum;
 import com.chen.sell.exception.SellException;
 import com.chen.sell.repository.OrderDetailRepository;
 import com.chen.sell.repository.OrderMasterRepository;
-import com.chen.sell.service.OrderService;
-import com.chen.sell.service.PayService;
-import com.chen.sell.service.ProductService;
+import com.chen.sell.service.*;
 import com.chen.sell.utils.KeyUtil;
 import com.chen.sell.converter.OrderMaster2OrderDTOConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +41,11 @@ public class OrderServiceImpl implements OrderService{
     private ProductService productService;
     @Autowired
     private PayService payService;
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
 
     @Override
@@ -90,6 +93,8 @@ public class OrderServiceImpl implements OrderService{
                 new CartDTO(e.getProductId(),e.getProductQuantity()));
 
         productService.decreaseStock(cartDTOList);
+
+        webSocket.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }
@@ -175,7 +180,8 @@ public class OrderServiceImpl implements OrderService{
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
-
+        //推送微信模板消息
+        pushMessageService.OrderStatus(orderDTO);
         return orderDTO;
     }
 
