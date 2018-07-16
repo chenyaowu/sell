@@ -43,9 +43,9 @@ public class OrderServiceImpl implements OrderService{
     private PayService payService;
     @Autowired
     private PushMessageService pushMessageService;
-
-    @Autowired
-    private WebSocket webSocket;
+//
+//    @Autowired
+//    private WebSocket webSocket;
 
 
     @Override
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService{
 
         productService.decreaseStock(cartDTOList);
 
-        webSocket.sendMessage(orderDTO.getOrderId());
+       // webSocket.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }

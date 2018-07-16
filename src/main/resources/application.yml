@@ -32,5 +32,11 @@ projectconfigurl:
   wechatMpAuthrize: a
   wechatOpenAuthorize: a
   sell: a
+logging:
+  level:
+    com.chen.sell.dataobject.mapper: trace
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
 
 
