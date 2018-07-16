@@ -17,20 +17,20 @@ server:
     context-path: /sell
 
 wechat:
-  mpAppId:
-  mpAppSecret:
-  openAppId:
-  openAppSecret:
-  mchId:
-  mchKey:
-  keyPath:
-  notifyUrl:
+  mpAppId: a
+  mpAppSecret: a
+  openAppId: a
+  openAppSecret: a
+  mchId: a
+  mchKey: a
+  keyPath: a
+  notifyUrl: a
   templateId:
-    orderStatus:
+    orderStatus: a
 
-projectUrl:
-  wechatMpAuthrize:
-  wechatOpenAuthorize:
-  sell:
+projectconfigurl:
+  wechatMpAuthrize: a
+  wechatOpenAuthorize: a
+  sell: a
 
 

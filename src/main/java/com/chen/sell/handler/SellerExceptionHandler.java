@@ -4,6 +4,7 @@ package com.chen.sell.handler;
 import com.chen.sell.VO.ResultVO;
 import com.chen.sell.config.ProjectConfigUrl;
 import com.chen.sell.exception.SellException;
+import com.chen.sell.exception.SellerAuthorizeException;
 import com.chen.sell.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,7 +20,7 @@ public class SellerExceptionHandler {
     private ProjectConfigUrl projectConfigUrl;
 
     //拦截登录异常
-    @ExceptionHandler
+    @ExceptionHandler(value = SellerAuthorizeException.class)
     public ModelAndView handlerAuthorizeException(){
         return new ModelAndView("redirect:"
                 .concat(projectConfigUrl.getWechatOpenAuthorize())
