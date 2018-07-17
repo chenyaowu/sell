@@ -10,6 +10,7 @@ import com.chen.sell.service.ProductService;
 import com.chen.sell.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,7 @@ public class BuyerProductController {
     private CategoryService categoryService;
 
     @RequestMapping("/list")
+    @Cacheable(cacheNames = "product",key = "123")
     public ResultVO list(){
 
         //1.查询所有商家商品

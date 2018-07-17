@@ -3,8 +3,11 @@ package com.chen.sell.utils;
 import com.chen.sell.VO.ResultVO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.io.Serializable;
+
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVOUtil {
+
 
     public static ResultVO success(Object object){
         ResultVO resultVO = new ResultVO();
